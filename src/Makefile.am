@@ -57,7 +57,11 @@ BITMARK_CORE_H = \
   rpcprotocol.h \
   rpcserver.h \
   script.h \
-  scrypt.h \
+  sph_simd.h \
+  sph_luffa.h \
+  sph_echo.h \
+  sph_shavite.h \
+  sph_cubehash.h \
   serialize.h \
   sync.h \
   threadsafety.h \
@@ -132,7 +136,7 @@ libbitmark_common_a_SOURCES = \
   protocol.cpp \
   rpcprotocol.cpp \
   script.cpp \
-  scrypt.cpp \
+  aes_helper.c \
   sync.cpp \
   util.cpp \
   version.cpp \
