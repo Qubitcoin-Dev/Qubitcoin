@@ -30,41 +30,41 @@ public:
         // The message start string is designed to be unlikely to occur in normal data.
         // The characters are rarely used upper ASCII, not valid as UTF-8, and produce
         // a large 4-byte int at any alignment.
-        pchMessageStart[0] = 0xf9;
-        pchMessageStart[1] = 0xbe;
-        pchMessageStart[2] = 0xb4;
-        pchMessageStart[3] = 0xd9;
-        vAlertPubKey = ParseHex("04fc9702847840aaf195de8442ebecedf5b095cdbb9bc716bda9110971b28a49e0ead8564ff0db22209e0374782c093bb899692d524e9d6a6956e7c5ecbcd68284");
-        nDefaultPort = P2PPORT;
-        nRPCPort = RPCPORT;
-        bnProofOfWorkLimit = CBigNum(~uint256(0) >> 32);
-        nSubsidyHalvingInterval = 788000;
+        pchMessageStart[0] = 0xfe;
+        pchMessageStart[1] = 0xa5;
+        pchMessageStart[2] = 0x03;
+        pchMessageStart[3] = 0xdd;
+        vAlertPubKey = ParseHex("0493e6dc310a0e444cfb20f3234a238f77699806d47909a42481010c5ce68ff04d3babc959cd037bd3aa6ded929f2b9b4aa2f626786cd7f8495e5bb61e9cfebbc4");
+        nDefaultPort = 7788;
+        nRPCPort = 7799;
+        bnProofOfWorkLimit = CBigNum(~uint256(0) >> 20);
+        nSubsidyHalvingInterval = 60480;
 
         // Build the genesis block.
-        const char* pszTimestamp = "NEW PFENNIG GENESIS";
+        const char* pszTimestamp = "22 July 1980";
         CTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 486604799 << CBigNum(4) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
-        txNew.vout[0].nValue = 20 * COIN;
-        txNew.vout[0].scriptPubKey = CScript() << ParseHex("04f88a76429dad346a10ecb5d36fcbf50bc2e009870e20c1a6df8db743e0b994afc1f91e079be8acc380b0ee7765519906e3d781519e9db48259f64160104939d8") << OP_CHECKSIG;
+        txNew.vout[0].nValue = nGenesisBlockRewardCoin;
+        txNew.vout[0].scriptPubKey = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
         genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
-        genesis.nVersion = 1;
-        genesis.nTime    = 1405274442;
-        genesis.nBits    = bnProofOfWorkLimit.GetCompact();
-        genesis.nNonce   = 0;
-
+        genesis.nVersion = 112;
+        genesis.nTime    = timeGenesisBlock;
+        genssis.nBits    = bnProofOfWorkLimit.GetCompact();
+        genesis.nNonce   = 2939695;
+        
         hashGenesisBlock = genesis.GetHash();
 
-        //assert(hashGenesisBlock == uint256("0xc1fb746e87e89ae75bdec2ef0639a1f6786744639ce3d0ece1dcf979b79137cb"));
+        assert(hashGenesisBlock == uint256("0x0000049ce6324e2f3f17eec90ce7e1f0bc9bcb44f85d769621d83cbb223ddc03"));
 
         // todo add more dns seeders
         vSeeds.push_back(CDNSSeedData("pfennig.co", "seed.pgennif.co"));
 
-        base58Prefixes[PUBKEY_ADDRESS] = list_of(85); // b
-        base58Prefixes[SCRIPT_ADDRESS] = list_of(5);
+        base58Prefixes[PUBKEY_ADDRESS] = list_of(38); // b
+        base58Prefixes[SCRIPT_ADDRESS] = list_of(9);
         base58Prefixes[SECRET_KEY] =     list_of(73); // B
         base58Prefixes[EXT_PUBLIC_KEY] = list_of(0x04)(0x88)(0xB2)(0x1E);
         base58Prefixes[EXT_SECRET_KEY] = list_of(0x04)(0x88)(0xAD)(0xE4);
